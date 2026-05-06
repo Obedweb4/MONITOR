@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --secondary: #f9f9f9;
+  --foreground: #f0f0f0;
+  --main: #1a1a1a;
+  --muted: #777777;
+  --primary: #222;
+  --line: #d8d8d8;
+  --sidebar: #fafafa;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #161616;
+  --main: #fefefe;
+  --secondary: #111111;
+  --muted: #888888;
+  --line: #1e1e1e;
+  --primary: #fefefe;
+  --sidebar: #0f0f0f;
+}
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
+  --color-main: var(--main);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-sidebar: var(--sidebar);
+}
+
+* { @apply outline-none; }
+
+html { overflow-x: clip; }
+body { @apply bg-background text-main font-sans; }
+
+.main { @apply max-w-[90%] 2xl:max-w-[1280px] mx-auto; }
+.layout { @apply max-w-[90%] md:max-w-[700px] mx-auto; }
+.center { @apply flex items-center justify-center; }
+
+button, .btn {
+  @apply cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary { @apply text-white bg-emerald-500 hover:bg-emerald-600 font-semibold transition-colors; }
+
+.hide-scrollbar::-webkit-scrollbar { @apply hidden; }
+.hide-scrollbar::-webkit-scrollbar-thumb { @apply hidden; }
+
+input, select, textarea {
+  @apply bg-background;
+}
+
+.font-outfit { font-family: var(--font-outfit); }
+
+/* ── Custom scrollbars — all elements ─────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
