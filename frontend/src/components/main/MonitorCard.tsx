@@ -40,7 +40,7 @@ export default function MonitorCard({ monitor, selected }: MonitorCardProps) {
             </button>
           </div>
         </div>
-        <StatusBadge status={monitor.last_status} />
+        <StatusBadge status={monitor.last_status ?? "unknown"} />
       </div>
 
       {monitor.history && monitor.history.length > 0 && (
