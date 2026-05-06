@@ -1,0 +1,17 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm run build"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/api/status"
+healthcheckTimeout = 30
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 3
+
+[environments.production.variables]
+NODE_ENV = "production"
+TIMEZONE = "UTC"
+PING_CHECK_INTERVAL_SECS = "10"
+MIN_PING_INTERVAL_MINS = "0.5"
+DATABASE_URL = "${{Postgres.DATABASE_URL}}"

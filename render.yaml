@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: obedtech-monitor
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/status
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: obedtech-monitor-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false
+      - key: RESEND1_API_KEY
+        sync: false
+      - key: RESEND1_DOMAIN
+        sync: false
+      - key: RESEND2_API_KEY
+        sync: false
+      - key: RESEND2_DOMAIN
+        sync: false
+      - key: TIMEZONE
+        value: UTC
+      - key: PING_CHECK_INTERVAL_SECS
+        value: "10"
+      - key: MIN_PING_INTERVAL_MINS
+        value: "0.5"
+
+databases:
+  - name: obedtech-monitor-db
+    plan: free
+    databaseName: obedtech_monitor
+    user: obedtech_monitor

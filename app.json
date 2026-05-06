@@ -1,0 +1,77 @@
+{
+  "name": "OBEDTECH MONITOR",
+  "description": "24/7 uptime monitoring SaaS with instant email alerts and a public REST API.",
+  "repository": "https://github.com/mauricegift/obedtech-monitor",
+  "logo": "https://files.obedtech.top/image/u2wvoimage.jpg",
+  "keywords": ["uptime", "monitoring", "alerts", "nodejs", "saas"],
+  "website": "https://monitor.obedtech.top",
+  "success_url": "/api/status",
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0",
+      "as": "DATABASE"
+    }
+  ],
+  "buildpacks": [
+    { "url": "heroku/nodejs" }
+  ],
+  "scripts": {
+    "postdeploy": "echo 'Deploy complete — tables auto-created on first startup'"
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Application environment",
+      "value": "production"
+    },
+    "PORT": {
+      "description": "Port the server listens on (Heroku sets this automatically)",
+      "value": "3000"
+    },
+    "JWT_SECRET": {
+      "description": "Secret used to sign JWTs — must be a long random string",
+      "generator": "secret"
+    },
+    "SESSION_SECRET": {
+      "description": "Secret for session management",
+      "generator": "secret"
+    },
+    "FRONTEND_URL": {
+      "description": "Full URL of your deployed app, e.g. https://your-app.herokuapp.com — used in verification email links",
+      "required": true
+    },
+    "RESEND1_API_KEY": {
+      "description": "Resend API key for sending emails (get one at resend.com)",
+      "required": true
+    },
+    "RESEND1_DOMAIN": {
+      "description": "Verified Resend sending domain, e.g. alerts.yourdomain.com",
+      "required": true
+    },
+    "RESEND2_API_KEY": {
+      "description": "Optional second Resend API key for round-robin failover",
+      "required": false
+    },
+    "RESEND2_DOMAIN": {
+      "description": "Optional second Resend sending domain",
+      "required": false
+    },
+    "TIMEZONE": {
+      "description": "Server timezone, e.g. UTC or Africa/Nairobi",
+      "value": "UTC"
+    },
+    "PING_CHECK_INTERVAL_SECS": {
+      "description": "How often (in seconds) the ping engine checks monitors",
+      "value": "10"
+    },
+    "MIN_PING_INTERVAL_MINS": {
+      "description": "Minimum monitor check interval in minutes (0.5 = 30 seconds)",
+      "value": "0.5"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}

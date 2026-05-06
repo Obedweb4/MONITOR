@@ -1,0 +1,20 @@
+{
+  "name": "obedtech-monitor",
+  "version": "2.0.0",
+  "description": "24/7 uptime monitoring SaaS with instant email alerts and REST API",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "start": "cd backend && node index.js",
+    "start:prod": "npm run build && npm start",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "postinstall": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": ["uptime", "monitoring", "alerts", "saas"],
+  "author": "OBED TECH",
+  "license": "MIT"
+}
