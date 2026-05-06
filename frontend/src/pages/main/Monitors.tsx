@@ -164,12 +164,12 @@ export default function Monitors() {
             {paginated.map(m => (
               <div key={m.id} className="relative group">
                 <div
-                  className={`absolute top-2 left-2 z-10 w-5 h-5 rounded-md border-2 center cursor-pointer transition-all ${selected.includes(m.id) ? "bg-emerald-500 border-emerald-500" : "border-gray-400 bg-background opacity-0 group-hover:opacity-100"}`}
-                  onClick={() => toggleSelect(m.id)}
+                  className={`absolute top-2 left-2 z-10 w-5 h-5 rounded-md border-2 center cursor-pointer transition-all ${selected.includes(String(m.id)) ? "bg-emerald-500 border-emerald-500" : "border-gray-400 bg-background opacity-0 group-hover:opacity-100"}`}
+                  onClick={() => toggleSelect(String(m.id))}
                 >
-                  {selected.includes(m.id) && <span className="text-white text-[10px] font-bold">✓</span>}
+                  {selected.includes(String(m.id)) && <span className="text-white text-[10px] font-bold">✓</span>}
                 </div>
-                <MonitorCard monitor={m} selected={selected.includes(m.id)} />
+                <MonitorCard monitor={m} selected={selected.includes(String(m.id))} />
               </div>
             ))}
           </div>
