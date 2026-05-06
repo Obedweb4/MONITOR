@@ -280,7 +280,7 @@ export default function AdminMonitors() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-sm font-semibold truncate">{m.name}</span>
-                    <StatusBadge status={m.last_status} size="sm" />
+                    <StatusBadge status={m.last_status ?? "unknown"} size="sm" />
                   </div>
                   <p className="text-xs text-muted truncate">{m.url}{m.path || ""}</p>
                   <div className="flex items-center gap-2 flex-wrap mt-0.5">

@@ -168,7 +168,7 @@ export default function AdminUsers() {
 
   const handleEditSave = () => {
     if (!editTarget) return;
-    const payload: Record<string, unknown> = { id: editTarget.id, ...editForm };
+    const payload: { id: string } & Record<string, unknown> = { id: String(editTarget.id), ...editForm };
     if (editAvatar !== undefined) payload.avatar = editAvatar;
     patchMutation.mutate(payload, { onSuccess: () => setEditTarget(null) });
   };

@@ -133,7 +133,7 @@ export default function AdminMonitorDetail() {
             <h1 className="text-lg font-bold font-outfit truncate">{monitor.name}</h1>
             <p className="text-xs text-muted truncate">{monitor.url}{monitor.path || ""}</p>
           </div>
-          <StatusBadge status={monitor.last_status} />
+          <StatusBadge status={monitor.last_status ?? "unknown"} />
           <button
             onClick={() => qc.invalidateQueries({ queryKey: ["admin-monitor", id] })}
             disabled={isFetching}
